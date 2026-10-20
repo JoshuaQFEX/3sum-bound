@@ -174,6 +174,10 @@ separately under [`docs/upstream-workflows/`](docs/upstream-workflows/README.md)
 
 ## Attribution and license
 
+The accompanying paper, *A sharper exponent for deterministic integer 3SUM*,
+is by **Joshua Wharton**, **QFEX** ([joshua@qfex.com](mailto:joshua@qfex.com)).
+It presents the numerical refinement and accompanying verification in this repository.
+
 The algorithmic construction and original full formalization are due to
 [c0ldzy17](https://github.com/c0ldzy17/three-sum-lean) and the authors credited
 in [METHOD.md](METHOD.md) and [NOTICE](NOTICE). Hrishik Sai Bojnal
