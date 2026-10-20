@@ -30,8 +30,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
-      ELAN_HOME: ${{ runner.temp }}/3sum-elan
-      MATHLIB_CACHE_DIR: ${{ runner.temp }}/3sum-mathlib-cache
       LEAN_NUM_THREADS: '4'
       PYTHONUNBUFFERED: '1'
     defaults:
@@ -48,6 +46,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p verification/ci
+          printf 'ELAN_HOME=%s\n' "$RUNNER_TEMP/3sum-elan" >> "$GITHUB_ENV"
+          printf 'MATHLIB_CACHE_DIR=%s\n' "$RUNNER_TEMP/3sum-mathlib-cache" >> "$GITHUB_ENV"
           python3 - <<'PY'
           import json
           import os
