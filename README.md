@@ -15,12 +15,22 @@ theorem Race.bound :
   exact ThreeSum.solvedInTime_4800699_2500000
 ```
 
-**Verification status: the independent exact-arithmetic checks and the early
-Lean check of the numerical parameter module passed. The complete frozen-source
-Lean build and subsequent full-source axiom audit are still pending.** The
-publication's final verification records will establish their outcomes. This
-repository does not yet claim a new successful full Lean check or official
-leaderboard acceptance.
+**Verified: the complete 1,198-module Lean source build and full-source axiom
+audit passed in GitHub Actions.** The audit checked **43,758 submitted declarations**
+and permits only `propext`, `Classical.choice`, and `Quot.sound`; the exported
+`Race.bound` uses exactly those axioms. The independent exact-arithmetic check
+also passed on the same source snapshot.
+
+The [GitHub Actions run](https://github.com/JoshuaQFEX/3sum-bound/actions/runs/39423606022) checked
+[source revision `e591fc694811`](https://github.com/JoshuaQFEX/3sum-bound/commit/e591fc6948110172bf4c94be9e29e375ece0a8a5).
+The published proof sources and pinned inputs match that revision exactly.
+The [CI observation](verification/github-actions-39423606022.json) records the
+run identity, successful outcomes, and the downloaded artifact digest check.
+
+The [verification summary](verification.json), [build receipt](verification/receipts/lean-1.9202796-20261020/build/results.json),
+and [axiom-audit receipt](verification/receipts/lean-1.9202796-20261020/audit/results.json) record the checked source hashes,
+toolchain, logs, and actual results. The repository does not claim official
+Big O Speedrun acceptance or independent Nanoda verification for this revision.
 
 ## Result and scope
 
@@ -29,7 +39,7 @@ distinct input positions have values summing to zero. Equal values at different
 positions are allowed. For each fixed polynomial magnitude bound on the input
 integers, the theorem supplies a single finite deterministic word-RAM program,
 independent of input size and admissible word width, with the required
-correctness and asymptotic running-time bound. The intended conclusion is
+correctness and asymptotic running-time bound. The conclusion is
 `O(n^1.9202796)` in that model.
 
 This is an asymptotic refinement. It does not provide a practical crossover
@@ -38,7 +48,8 @@ size or a measured implementation speedup. The exponent decreases by exactly
 
 The full proof is in
 [TernaryFinalSolver.lean](Submission/ThreeSum/TernaryFinalSolver.lean).
-The [proof note](docs/three_sum_bound_note.tex) explains the exact inequalities,
+The [proof note](docs/three_sum_bound_note.pdf) ([LaTeX source](docs/three_sum_bound_note.tex))
+explains the exact inequalities,
 the retained runtime margins, and the scope of the result. The
 [numerical certificate](refinement/rational_certificate_refined.json) records
 exact rational endpoints and positive residuals.
@@ -89,6 +100,12 @@ Use **Lean `leanprover/lean4:v4.33.1`** and **Mathlib commit
 for the verification helpers; the rational checker uses only the standard
 library.
 
+Full compilation is memory intensive. The included CI workflow targets a
+public GitHub `ubuntu-24.04` runner with 16 GB RAM and four compiler workers.
+An 8 GiB local environment exhausted memory on an inherited module even with
+one worker. Use a larger machine or the included workflow to reproduce the
+complete check.
+
 Run the following commands from the repository root after installing the
 pinned Lean toolchain:
 
@@ -131,7 +148,10 @@ regenerate the patch and certificates from the pristine upstream revision.
 |---|---|
 | `Submission.lean`, `Submission/` | Complete Lean source and exported theorem |
 | `refinement/` | Exact certificate, independent checker, generation scripts, patch, and changed-file hashes |
-| `docs/three_sum_bound_note.tex` | Mathematical note for the refined exponent |
+| `docs/three_sum_bound_note.pdf`, `.tex` | Mathematical note for the refined exponent |
+| `verification.json` | Current successful verification summary and source identity |
+| `verification/github-actions-39423606022.json` | CI run identity, outcomes, and archive digest validation |
+| `verification/receipts/lean-1.9202796-20261020/` | Current build, axiom-audit, arithmetic records, and raw logs |
 | `docs/UPSTREAM_README.md` | Predecessor README, preserved verbatim |
 | `scripts/` | Inherited full-source build plan and axiom-audit tools |
 | `.github/workflows/verify.yml` | Pinned CI workflow for the full source build, axiom audit, and retained logs |
@@ -141,8 +161,9 @@ regenerate the patch and certificates from the pristine upstream revision.
 The inherited `VERIFICATION.md`, `REPRODUCTION.md`, `SOURCE_MANIFEST.json`, and
 historical receipt directory describe earlier revisions. They are retained for
 provenance; their hashes and success claims do not certify this refinement.
-The current changed-file manifest is under `refinement/`. Final current-source
-build and audit receipts will be added after those checks finish.
+The current changed-file manifest is under `refinement/`. The successful
+current-source build, audit, and arithmetic records are linked from
+[`verification.json`](verification.json).
 
 The [verification workflow](.github/workflows/verify.yml) runs on source changes
 and supports manual dispatch. It checks all 1,198 planned modules, runs the

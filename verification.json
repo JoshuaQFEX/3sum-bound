@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "status": "ci_receipts_checked",
+  "verification_basis": {
+    "receipt_origin": "ci",
+    "origin_is_user_supplied": true,
+    "ci_provider_authentication": "not_performed",
+    "ci_run_url_establishes_success": false
+  },
+  "problem": "3sum",
+  "entry_point": "Race.bound",
+  "theorem": "EndStatement.ThreeSum.SolvedInTime ((4800699 : Rat) / 2500000)",
+  "exponent": {
+    "numerator": 4800699,
+    "denominator": 2500000,
+    "decimal": "1.9202796"
+  },
+  "scope": "Successful complete Lean source build, full-source permitted-axiom audit, and exact rational checks. Hosted benchmark and independent Nanoda acceptance are not established.",
+  "collected_utc": "2026-10-20T13:45:40.382267+00:00",
+  "upstream": {
+    "repository": "https://github.com/fringewidth/three-sum-lean",
+    "commit": "4a4a98e6eca4fc16817f0d2074026fdaece52efd",
+    "construction_credit": "c0ldzy17 and authors in METHOD.md and NOTICE",
+    "prior_margin_refinement_credit": "Hrishik Sai Bojnal (fringewidth)"
+  },
+  "source_snapshot": {
+    "module_count": 1198,
+    "manifest_sha256": "9898e81eb967b443c070be5e78600247e5538368edb44d625df32dd49fb77b12",
+    "manifest_encoding": "UTF-8 JSON of the path-to-SHA256 map, sorted keys, separators comma and colon",
+    "manifest_record": "verification/receipts/lean-1.9202796-20261020/build/results.json",
+    "verified_git_commit": "e591fc6948110172bf4c94be9e29e375ece0a8a5",
+    "publication_sources_equal_checked_sources": true
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.33.1",
+    "mathlib_commit": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "pinned_input_sha256": {
+      "lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+      "lakefile.toml": "5ad072c0aca3c7ab777a99938f583ef92bc121101917b7818b5f53f1a384b08c",
+      "lake-manifest.json": "484af05025301c3920dfeb644f6dbb7f02b05f596bf48831c9324e383694db25",
+      "scripts/source-chains.json": "ee97a6c83f9dddcd5e63af28cfdf4f808b0db34db39d57fd374d492620841837"
+    }
+  },
+  "build": {
+    "status": "succeeded",
+    "exit_code": 0,
+    "mode": "aggregate_explicit_modules",
+    "worker_count": 4,
+    "module_count": 1198,
+    "source_inputs_unchanged": true,
+    "started_utc": "20261020T123923.236903Z",
+    "finished_utc": "2026-10-20T13:44:00.557274+00:00",
+    "record": "verification/receipts/lean-1.9202796-20261020/build/results.json"
+  },
+  "axiom_audit": {
+    "status": "succeeded",
+    "exit_code": 0,
+    "audited_declarations": 43758,
+    "permitted_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "exported_theorem_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "started_utc": "20261020T134400.842183Z",
+    "finished_utc": "2026-10-20T13:44:10.529983+00:00",
+    "record": "verification/receipts/lean-1.9202796-20261020/audit/results.json"
+  },
+  "exact_arithmetic": {
+    "status": "pass",
+    "scope": "Exact arithmetic checks; this script does not check the full Lean proof.",
+    "checker_sha256": "25648e76ad43947cb2c690b50e87e57dbb8a43e9f8d7e604cc7f474ea8d11e37",
+    "certificate_sha256": "f665ce08f960ffc94cd5e6b54a079b9a3267d4f482513fa7a3b00c9a2831c884",
+    "record": "verification/receipts/lean-1.9202796-20261020/arithmetic/independent_validation.json"
+  },
+  "external_verification": {
+    "github_actions_run_url": "https://github.com/JoshuaQFEX/3sum-bound/actions/runs/39423606022",
+    "run_url_is_user_supplied": true,
+    "big_o_speedrun": "not_established",
+    "independent_nanoda": "not_established"
+  },
+  "artifact_sha256": {
+    "refinement/rational_certificate_refined.json": "f665ce08f960ffc94cd5e6b54a079b9a3267d4f482513fa7a3b00c9a2831c884",
+    "refinement/candidate_refined_manifest.json": "2e109824a8dc703f38525d51d3fb8cf32f2867a66e23984cf148f223e150b066",
+    "refinement/verify_certificate.py": "25648e76ad43947cb2c690b50e87e57dbb8a43e9f8d7e604cc7f474ea8d11e37",
+    "refinement/target_19202796.patch": "71a5c32eb9188a14961394dbeb53053fcffa0d428001e36db0aa8a64f47af3d4",
+    "refinement/build_parallel.py": "661474f67b0e29f76f614060d721685a2f9476b72e9b7a0db1c5a2701d92e058",
+    "scripts/audit_axioms.py": "7ffe74d7184636194b4563478d44f3f7f4bf31af91dbf48b8a7aee198b3fb585",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "NOTICE": "03d44d6bb8337a2462fbd32334ec3265bea720b6d757972b1583c85d97922c18"
+  },
+  "receipt_sha256": {
+    "verification/receipts/lean-1.9202796-20261020/arithmetic/independent_validation.json": "f2638f265a8b565ef87a0e463d45c02265ee4a15e2ed217ccc0a413496ea682d",
+    "verification/receipts/lean-1.9202796-20261020/audit/FullSourceAxioms.lean": "c214e53eccbf971753e81b14ea19c05604ef1e8f2c971a67066c3dac441f67cb",
+    "verification/receipts/lean-1.9202796-20261020/audit/audit.log": "579b6934689451d9517f1f8611706d7a28720c9e2767fae308da5cc134fd1171",
+    "verification/receipts/lean-1.9202796-20261020/audit/results.json": "c58cf518e4f27f6e11a13c1dc660d5e2e188b4308f510046de42953c012afc8a",
+    "verification/receipts/lean-1.9202796-20261020/audit/toolchain.log": "fce55b0090dc6cdcac12837463fe5099f5cf2d04b78200c10441e5da6f80fb6b",
+    "verification/receipts/lean-1.9202796-20261020/build/aggregate.log": "2eb9ddb3dbe45bf809b1c5567b177bdb5c37cf68fcdca23c5cc002f4721af6df",
+    "verification/receipts/lean-1.9202796-20261020/build/results.json": "2c224eccb89d40c270598f44c35db7d162c6b8dbd9dc1485da97c1ab6cbbf6b1",
+    "verification/receipts/lean-1.9202796-20261020/build/toolchain.log": "fce55b0090dc6cdcac12837463fe5099f5cf2d04b78200c10441e5da6f80fb6b",
+    "verification/receipts/lean-1.9202796-20261020/collector/collect_verification.py": "b76ea6dacdf0a251fecc372a11c924baaaf62540a1592c23f672424da4522a43"
+  },
+  "collector": {
+    "sha256": "b76ea6dacdf0a251fecc372a11c924baaaf62540a1592c23f672424da4522a43",
+    "record": "verification/receipts/lean-1.9202796-20261020/collector/collect_verification.py",
+    "scope": "Validates existing records and source hashes; does not run Lean or authenticate a CI provider."
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "status": "pass",
+  "scope": "Exact arithmetic checks; this script does not check the full Lean proof.",
+  "certificate_file": "/workspace/scratch/8fcc40459e31/three_sum_destination/refinement/rational_certificate_refined.json",
+  "certificate_sha256": "f665ce08f960ffc94cd5e6b54a079b9a3267d4f482513fa7a3b00c9a2831c884",
+  "source_sha256": {
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryParameters.lean": "d3e47b71876758b51d9527c482203034fb558c4877c0f66bff9d7aea2726ac3f",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryOversizeRates.lean": "01b3902c7ff784206f94882ded7f2d6d2582ac9350309c2a36cab2d1ffb18cd9",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryOversizeOverhead.lean": "f8952a14c77f072efa72e7801a237d37fbd3202469e99bbd8f4e6e93e062ce52",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryCountFrontendBudget.lean": "148384d59ee77fe705fed976013220c630e60dc665b4acbe14257b273edc0564",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryActualPrefixRuntime.lean": "dd9bf3f3982f25f9d060a34336113fe6a0d89c4b6c63fe2c1cffda734a311ee7",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryActualRuntimeParameters.lean": "eb151d114413004229bbf5ed18f787b594b6371b6d8b05e9091fd336241d4019",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryActualColoredRuntime.lean": "4a5df308b49b58dff62cf8e58bf5529c2f887f48364473ae18d0c115f6a1e807",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryProfileRuntime.lean": "1a00379c37f696506fccdce91b19e9a48a97fb321dd00f41dff44fca7bdab5e2",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernarySolverEndBridge.lean": "a910fe2368ee10efbaac23eaae28b18edb8f50cf2b3c6b04fcfbe71ef0d7c0d5",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission/ThreeSum/TernaryFinalSolver.lean": "341d0b03888d762fb5e8c047b127d1927732aad6b75a067c1dfb2a3a97e51e73",
+    "/workspace/scratch/8fcc40459e31/three_sum_destination/Submission.lean": "002efbe8bbfe39cce98e33b3f922a841e2fc1326f12b9c7b9ca67aef8897120a"
+  },
+  "checks": {
+    "direct_logarithms_with_coarse_mathlib_remainder": 13,
+    "derived_logarithms_via_exact_power_of_two_identities": 9,
+    "entropy_enclosures_from_actual_definitions": 5,
+    "actual_cost_ledger_terms_strictly_below_certificate": 6,
+    "positive_cross_multiplication_slacks": 5,
+    "fixed_downstream_entropy_comparisons": 3,
+    "runtime_margins_and_source_constants": "pass",
+    "final_exported_rational_target": "pass"
+  },
+  "series_terms": [
+    16
+  ],
+  "largest_coarse_log_remainder": "1/2470693585135788",
+  "smallest_direct_log_endpoint_slack": "111365742453563458476626229015644696699178155736202096283408071758019162625928857987094891126021082968873098746969738852817517047757061861883984059520658005062972084921653231088652362421234729812018075682463388830082998038858848080188234018216163783466494239927/5386151658758886748296321674768940673666740103777176907235656582272209501699495094370121112809937000330017884099017928289254978195589271522024807214435271006608338521869542183133056390999378774552107483173225449426507416064205258165549644760590811834751619364818300000000000",
+  "principal_certificate": "96013973/50000000",
+  "final_target": "4800699/2500000",
+  "ledger_upper_bounds": [
+    "156432807976/81463563795",
+    "1061964464734713058634/553026018855291530485",
+    "102285962006/81463563795",
+    "6798358516/5430904253",
+    "35603828412/20365890949",
+    "1"
+  ],
+  "smallest_ledger_certificate_gap": "3179381507/814635637950000000",
+  "runtime": {
+    "K_min": 100000000,
+    "micro_max": "1/1000000000000000000",
+    "auxiliary_allowance": "1/100000000",
+    "soft": "192027957/100000000",
+    "frontend": "96013979/50000000",
+    "colored": "192027959/100000000",
+    "target": "4800699/2500000",
+    "uniformity_reason": "8/K, 10/K and 1/(100*K^2) decrease for positive K."
+  },
+  "limitations": [
+    "Checks exact numerical enclosures and the supported source declarations only.",
+    "Does not execute Lean, validate proof terms, or establish algorithm correctness.",
+    "Does not replace an unchanged-source Lean build and transitive axiom audit.",
+    "Informational JSON decimal approximations are ignored in all checks."
+  ]
+}

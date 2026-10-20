@@ -5,7 +5,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
 \newtheorem{proposition}{Proposition}
-\newcommand{\verificationstatus}{The rational certificates and source changes have been independently checked. The full Lean rebuild is in progress; this document does not yet assert a successful new kernel check or leaderboard acceptance.}
+\newcommand{\verificationstatus}{The complete 1,198-module Lean source build and full-source axiom audit passed in GitHub Actions with Lean v4.33.1. The audit checked 43,758 submitted declarations. The exported theorem depends only on the permitted axioms \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. The independent exact rational checks also passed on the same source snapshot. Official leaderboard acceptance and independent Nanoda verification are not established.}
 \newcommand{\basecommit}{4a4a98e6eca4fc16817f0d2074026fdaece52efd}
 \title{A sharper exponent for deterministic integer 3SUM}
 \author{A refinement of the existing ternary construction}
@@ -14,7 +14,7 @@
 \maketitle
 \begin{abstract}
 We refine the numerical certificates and exponent margins in the published
-ternary 3SUM formalization, targeting the exact rational exponent
+ternary 3SUM formalization, establishing the exact rational exponent
 $4800699/2500000=1.9202796$, below the listed bound $1.9203$.
 The probability profile and algorithmic construction are inherited; the
 contribution is a more precise proof of their running time. Exact rational
@@ -43,7 +43,7 @@ a practical implementation, crossover size, or measured speedup.
 
 The base source is the immutable revision \texttt{\basecommit} of
 \texttt{fringewidth/three-sum-lean}, the source linked by the $1.9203$
-leaderboard entry. The new target is
+leaderboard entry. The refined bound is
 \[
  \boxed{\operatorname{3SUM}\in O\!\left(n^{4800699/2500000}\right)
        =O(n^{1.9202796}).}
@@ -190,7 +190,7 @@ probability profile are preserved. Historical milestone constants that
 are unrelated to the exported theorem are retained.
 
 \begin{samepage}
-The intended final export is
+The final export is
 \begin{verbatim}
 theorem Race.bound :
     EndStatement.ThreeSum.SolvedInTime
@@ -205,16 +205,21 @@ check exact rational certificates, build the complete submitted source,
 and perform the permitted-axiom audit. A successful local check and an
 official leaderboard acceptance are separate events.
 
-\section{Limits of further parameter tuning}
-Numerical searches of the existing scalar-rank ternary ledger found
-values near $1.9202794288$. This is evidence of a nearly balanced local
-optimum, not a proof of global optimality or a lower bound on 3SUM.
-The published rational profile is already close to it. Enlarging the
-alphabet or varying the cut weights did not reveal a substantial gain
-in the searches performed. Those exploratory models do not establish new
-executable algorithms. Improving much below this region appears to require
-a stronger counting, preprocessing, or query construction, beyond simply
-rebalancing these numerical constants.
+\section{What the refinement leaves open}
+For the fixed profile above, the same entropy certificate gives
+\[
+ \frac{156432807972}{81463563796}
+ \;\leq\;\frac{2B}{H}\;\leq\;
+ \frac{156432807976}{81463563795}.
+\]
+Thus this particular bank-cost expression lies between
+$1.92027945602$ and $1.92027945610$. The remaining gap to the exported
+exponent is principally the retained runtime margins. More decimal
+precision in the same logarithm estimates cannot remove those margins
+or reduce this fixed cost expression substantially. Further progress may
+come from adjusting the parameter profile, proving smaller overheads, or
+changing the construction. These observations do not prove global
+optimality of the profile or a lower bound for the 3SUM problem.
 
 \section*{Attribution and sources}
 The algorithmic construction and full original formalization are due to
@@ -228,7 +233,12 @@ and program logic originate in Anthropic's formalization, through the
 upstream source lineage. The present work claims the numerical refinement
 and its accompanying checks, not those prior constructions.
 
+\begingroup
+\small
 \begin{enumerate}
+\setlength{\itemsep}{2pt}
+\setlength{\parsep}{0pt}
+\setlength{\parskip}{0pt}
 \item Big O Speedrun, 3SUM problem and leaderboard:
 \url{https://bigospeedrun.com/3sum}.
 \item Official check of the base $1.9203$ revision:
@@ -240,7 +250,8 @@ and its accompanying checks, not those prior constructions.
 \item J. Alman and V. Vassilevska Williams, \emph{Truly Subquadratic 3SUM
 and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs}:
 \url{https://arxiv.org/abs/2610.06783}.
-\item Repository for this refinement and its verification records:
+\item Refinement repository and verification records:
 \url{https://github.com/JoshuaQFEX/3sum-bound}.
 \end{enumerate}
+\endgroup
 \end{document}

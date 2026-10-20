@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-20 13:46:16 UTC",
+  "observation_basis": "Primary GitHub Actions API metadata read through the connected GitHub tools, followed by local verification of the downloaded artifact.",
+  "repository": "JoshuaQFEX/3sum-bound",
+  "run": {
+    "id": 39423606022,
+    "html_url": "https://github.com/JoshuaQFEX/3sum-bound/actions/runs/39423606022",
+    "head_sha": "e591fc6948110172bf4c94be9e29e375ece0a8a5",
+    "status": "completed",
+    "conclusion": "success",
+    "run_started_at": "2026-10-20T12:36:44Z",
+    "updated_at": "2026-10-20T13:44:16Z"
+  },
+  "job": {
+    "id": 118630459062,
+    "name": "verify",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 39423606022,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Check out the exact triggering revision",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Record source revision and runner resources",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Check the exact rational certificate independently",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Reclaim unused tool storage on the disposable runner",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Install the pinned Lean toolchain",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Fetch dependencies and their pinned Mathlib cache",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Build every one of the 1198 submitted modules",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Audit every submitted declaration and its transitive axioms",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Record actual check outcomes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Upload verification receipts and logs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Post Check out the exact triggering revision",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      }
+    ]
+  },
+  "artifact": {
+    "id": 12268862948,
+    "name": "3sum-verification-e591fc6948110172bf4c94be9e29e375ece0a8a5-39423606022-1",
+    "size_in_bytes": 172847,
+    "digest": "sha256:d568d44ba3721c8c75fe06824d2f8b1b532993f2bcf0df4bcb05b36e0f7784f5",
+    "head_sha": "e591fc6948110172bf4c94be9e29e375ece0a8a5",
+    "run_id": 39423606022,
+    "created_at": "2026-10-20T13:44:11Z"
+  },
+  "download_validation": {
+    "zip_bytes": 172847,
+    "zip_sha256": "d568d44ba3721c8c75fe06824d2f8b1b532993f2bcf0df4bcb05b36e0f7784f5",
+    "matches_github_artifact_digest": true,
+    "matches_github_artifact_size": true
+  },
+  "receipt_validation": {
+    "summary": "verification.json",
+    "complete_module_count": 1198,
+    "audited_declarations": 43758,
+    "source_manifest_sha256": "9898e81eb967b443c070be5e78600247e5538368edb44d625df32dd49fb77b12",
+    "exact_target": "4800699/2500000",
+    "independent_rational_check": "pass",
+    "collector_validation": "pass"
+  },
+  "scope": "This observation records CI provenance and the archive digest check separately from the fail-closed receipt collector. Official Big O Speedrun and independent Nanoda acceptance are not established."
+}
