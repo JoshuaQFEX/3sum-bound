@@ -1,0 +1,538 @@
+--- a/Submission/ThreeSum/TernaryParameters.lean
++++ b/Submission/ThreeSum/TernaryParameters.lean
+@@ -34,8 +34,8 @@
+ def queryArg2 : ℝ := (10809005168746209 / 10000000000000000 : ℝ)
+ def deficit : ℝ := (268969 / 20000000 : ℝ)
+ def mean : ℝ := pi1 + 2 * pi2
+-def certificateExponent : ℝ := 192029 / 100000
+-def targetExponent : ℝ := 19203 / 10000
++def certificateExponent : ℝ := 96013973 / 50000000
++def targetExponent : ℝ := 4800699 / 2500000
+ def Hpi : ℝ := (-pi0 * Real.log pi0 - pi1 * Real.log pi1 -
+   pi2 * Real.log pi2) / Real.log 2
+ def Halpha : ℝ := (-alpha0 * Real.log alpha0 - alpha1 * Real.log alpha1 -
+@@ -48,9 +48,9 @@
+ theorem log_two_pos : 0 < Real.log 2 := Real.log_pos (by norm_num)
+ 
+ private theorem log_two_bounds :
+-    (6931471 / 10000000 : ℝ) ≤ Real.log 2 ∧ Real.log 2 ≤ (433217 / 625000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((1 / 3 : ℝ) : ℝ)| < 1) 8
++    (693147180559 / 1000000000000 : ℝ) ≤ Real.log 2 ∧ Real.log 2 ≤ (8664339757 / 12500000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((1 / 3 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (1 / 3 : ℝ)) / (1 - (1 / 3 : ℝ)) : ℝ) = 2 := by
+     norm_num []
+   rw [hratio] at h
+@@ -61,9 +61,9 @@
+ private def normalized_pi0 : ℝ := (81204903 / 50000000 : ℝ)
+ 
+ private theorem log_normalized_pi0_bounds :
+-    (2424763 / 5000000 : ℝ) ≤ Real.log normalized_pi0 ∧ Real.log normalized_pi0 ≤ (4849527 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((31204903 / 131204903 : ℝ) : ℝ)| < 1) 8
++    (484952621689 / 1000000000000 : ℝ) ≤ Real.log normalized_pi0 ∧ Real.log normalized_pi0 ≤ (48495262169 / 100000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((31204903 / 131204903 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (31204903 / 131204903 : ℝ)) / (1 - (31204903 / 131204903 : ℝ)) : ℝ) = normalized_pi0 := by
+     norm_num [normalized_pi0]
+   rw [hratio] at h
+@@ -72,7 +72,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_pi0_bounds :
+-    (-1040973 / 5000000 : ℝ) ≤ Real.log pi0 ∧ Real.log pi0 ≤ (-260243 / 1250000 : ℝ) := by
++    (-208194558871 / 1000000000000 : ℝ) ≤ Real.log pi0 ∧ Real.log pi0 ≤ (-208194558869 / 1000000000000 : ℝ) := by
+   have hu := log_normalized_pi0_bounds
+   have htwo := log_two_bounds
+   have heq : pi0 = normalized_pi0 / (2 : ℝ) ^ 1 := by norm_num [pi0, normalized_pi0]
+@@ -84,9 +84,9 @@
+ private def normalized_pi1 : ℝ := (317207 / 250000 : ℝ)
+ 
+ private theorem log_normalized_pi1_bounds :
+-    (297617 / 1250000 : ℝ) ≤ Real.log normalized_pi1 ∧ Real.log normalized_pi1 ≤ (2380937 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((67207 / 567207 : ℝ) : ℝ)| < 1) 8
++    (952374559 / 4000000000 : ℝ) ≤ Real.log normalized_pi1 ∧ Real.log normalized_pi1 ≤ (238093639751 / 1000000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((67207 / 567207 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (67207 / 567207 : ℝ)) / (1 - (67207 / 567207 : ℝ)) : ℝ) = normalized_pi1 := by
+     norm_num [normalized_pi1]
+   rw [hratio] at h
+@@ -95,7 +95,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_pi1_bounds :
+-    (-460337 / 250000 : ℝ) ≤ Real.log pi1 ∧ Real.log pi1 ≤ (-4603369 / 2500000 : ℝ) := by
++    (-184134790193 / 100000000000 : ℝ) ≤ Real.log pi1 ∧ Real.log pi1 ≤ (-920673950963 / 500000000000 : ℝ) := by
+   have hu := log_normalized_pi1_bounds
+   have htwo := log_two_bounds
+   have heq : pi1 = normalized_pi1 / (2 : ℝ) ^ 3 := by norm_num [pi1, normalized_pi1]
+@@ -107,9 +107,9 @@
+ private def normalized_pi2 : ℝ := (2934747 / 1562500 : ℝ)
+ 
+ private theorem log_normalized_pi2_bounds :
+-    (6303341 / 10000000 : ℝ) ≤ Real.log normalized_pi2 ∧ Real.log normalized_pi2 ≤ (3151671 / 5000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((1372247 / 4497247 : ℝ) : ℝ)| < 1) 8
++    (630334145913 / 1000000000000 : ℝ) ≤ Real.log normalized_pi2 ∧ Real.log normalized_pi2 ≤ (315167072957 / 500000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((1372247 / 4497247 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (1372247 / 4497247 : ℝ)) / (1 - (1372247 / 4497247 : ℝ)) : ℝ) = normalized_pi2 := by
+     norm_num [normalized_pi2]
+   rw [hratio] at h
+@@ -118,7 +118,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_pi2_bounds :
+-    (-35285491 / 10000000 : ℝ) ≤ Real.log pi2 ∧ Real.log pi2 ≤ (-8821371 / 2500000 : ℝ) := by
++    (-3528548937447 / 1000000000000 : ℝ) ≤ Real.log pi2 ∧ Real.log pi2 ≤ (-22053430859 / 6250000000 : ℝ) := by
+   have hu := log_normalized_pi2_bounds
+   have htwo := log_two_bounds
+   have heq : pi2 = normalized_pi2 / (2 : ℝ) ^ 6 := by norm_num [pi2, normalized_pi2]
+@@ -130,9 +130,9 @@
+ private def normalized_alpha0 : ℝ := (90113327 / 50000000 : ℝ)
+ 
+ private theorem log_normalized_alpha0_bounds :
+-    (117809 / 200000 : ℝ) ≤ Real.log normalized_alpha0 ∧ Real.log normalized_alpha0 ≤ (5890451 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((40113327 / 140113327 : ℝ) : ℝ)| < 1) 8
++    (589045061677 / 1000000000000 : ℝ) ≤ Real.log normalized_alpha0 ∧ Real.log normalized_alpha0 ≤ (294522530839 / 500000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((40113327 / 140113327 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (40113327 / 140113327 : ℝ)) / (1 - (40113327 / 140113327 : ℝ)) : ℝ) = normalized_alpha0 := by
+     norm_num [normalized_alpha0]
+   rw [hratio] at h
+@@ -141,7 +141,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_alpha0_bounds :
+-    (-520511 / 5000000 : ℝ) ≤ Real.log alpha0 ∧ Real.log alpha0 ≤ (-52051 / 500000 : ℝ) := by
++    (-104102118883 / 1000000000000 : ℝ) ≤ Real.log alpha0 ∧ Real.log alpha0 ≤ (-104102118881 / 1000000000000 : ℝ) := by
+   have hu := log_normalized_alpha0_bounds
+   have htwo := log_two_bounds
+   have heq : alpha0 = normalized_alpha0 / (2 : ℝ) ^ 1 := by norm_num [alpha0, normalized_alpha0]
+@@ -153,9 +153,9 @@
+ private def normalized_alpha1 : ℝ := (1113553 / 781250 : ℝ)
+ 
+ private theorem log_normalized_alpha1_bounds :
+-    (1772079 / 5000000 : ℝ) ≤ Real.log normalized_alpha1 ∧ Real.log normalized_alpha1 ≤ (3544159 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((332303 / 1894803 : ℝ) : ℝ)| < 1) 8
++    (354415882179 / 1000000000000 : ℝ) ≤ Real.log normalized_alpha1 ∧ Real.log normalized_alpha1 ≤ (17720794109 / 50000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((332303 / 1894803 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (332303 / 1894803 : ℝ)) / (1 - (332303 / 1894803 : ℝ)) : ℝ) = normalized_alpha1 := by
+     norm_num [normalized_alpha1]
+   rw [hratio] at h
+@@ -164,7 +164,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_alpha1_bounds :
+-    (-2418173 / 1000000 : ℝ) ≤ Real.log alpha1 ∧ Real.log alpha1 ≤ (-967269 / 400000 : ℝ) := by
++    (-2418172840061 / 1000000000000 : ℝ) ≤ Real.log alpha1 ∧ Real.log alpha1 ≤ (-302271605007 / 125000000000 : ℝ) := by
+   have hu := log_normalized_alpha1_bounds
+   have htwo := log_two_bounds
+   have heq : alpha1 = normalized_alpha1 / (2 : ℝ) ^ 4 := by norm_num [alpha1, normalized_alpha1]
+@@ -176,9 +176,9 @@
+ private def normalized_alpha2 : ℝ := (978249 / 781250 : ℝ)
+ 
+ private theorem log_normalized_alpha2_bounds :
+-    (224869 / 1000000 : ℝ) ≤ Real.log normalized_alpha2 ∧ Real.log normalized_alpha2 ≤ (2248691 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((196999 / 1759499 : ℝ) : ℝ)| < 1) 8
++    (44973807561 / 200000000000 : ℝ) ≤ Real.log normalized_alpha2 ∧ Real.log normalized_alpha2 ≤ (112434518903 / 500000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((196999 / 1759499 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (196999 / 1759499 : ℝ)) / (1 - (196999 / 1759499 : ℝ)) : ℝ) = normalized_alpha2 := by
+     norm_num [normalized_alpha2]
+   rw [hratio] at h
+@@ -187,7 +187,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_alpha2_bounds :
+-    (-23135807 / 5000000 : ℝ) ≤ Real.log alpha2 ∧ Real.log alpha2 ≤ (-23135803 / 5000000 : ℝ) := by
++    (-925432245223 / 200000000000 : ℝ) ≤ Real.log alpha2 ∧ Real.log alpha2 ≤ (-4627161226107 / 1000000000000 : ℝ) := by
+   have hu := log_normalized_alpha2_bounds
+   have htwo := log_two_bounds
+   have heq : alpha2 = normalized_alpha2 / (2 : ℝ) ^ 7 := by norm_num [alpha2, normalized_alpha2]
+@@ -199,9 +199,9 @@
+ private def normalized_three : ℝ := (3 / 2 : ℝ)
+ 
+ private theorem log_normalized_three_bounds :
+-    (4054651 / 10000000 : ℝ) ≤ Real.log normalized_three ∧ Real.log normalized_three ≤ (1013663 / 2500000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((1 / 5 : ℝ) : ℝ)| < 1) 8
++    (101366277027 / 250000000000 : ℝ) ≤ Real.log normalized_three ∧ Real.log normalized_three ≤ (405465108109 / 1000000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((1 / 5 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (1 / 5 : ℝ)) / (1 - (1 / 5 : ℝ)) : ℝ) = normalized_three := by
+     norm_num [normalized_three]
+   rw [hratio] at h
+@@ -210,7 +210,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_three_bounds :
+-    (5493061 / 5000000 : ℝ) ≤ Real.log three ∧ Real.log three ≤ (2746531 / 2500000 : ℝ) := by
++    (1098612288667 / 1000000000000 : ℝ) ≤ Real.log three ∧ Real.log three ≤ (1098612288669 / 1000000000000 : ℝ) := by
+   have hu := log_normalized_three_bounds
+   have htwo := log_two_bounds
+   have heq : three = normalized_three * (2 : ℝ) ^ 1 := by norm_num [three, normalized_three]
+@@ -222,9 +222,9 @@
+ private def normalized_y : ℝ := (3632479 / 2500000 : ℝ)
+ 
+ private theorem log_normalized_y_bounds :
+-    (1868123 / 5000000 : ℝ) ≤ Real.log normalized_y ∧ Real.log normalized_y ≤ (3736247 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((1132479 / 6132479 : ℝ) : ℝ)| < 1) 8
++    (93406150857 / 250000000000 : ℝ) ≤ Real.log normalized_y ∧ Real.log normalized_y ≤ (373624603429 / 1000000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((1132479 / 6132479 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (1132479 / 6132479 : ℝ)) / (1 - (1132479 / 6132479 : ℝ)) : ℝ) = normalized_y := by
+     norm_num [normalized_y]
+   rw [hratio] at h
+@@ -233,7 +233,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_y_bounds :
+-    (-1705817 / 1000000 : ℝ) ≤ Real.log y ∧ Real.log y ≤ (-8529083 / 5000000 : ℝ) := by
++    (-426454234563 / 250000000000 : ℝ) ≤ Real.log y ∧ Real.log y ≤ (-213227117281 / 125000000000 : ℝ) := by
+   have hu := log_normalized_y_bounds
+   have htwo := log_two_bounds
+   have heq : y = normalized_y / (2 : ℝ) ^ 3 := by norm_num [y, normalized_y]
+@@ -243,9 +243,9 @@
+   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
+ 
+ private theorem log_bankArg_bounds :
+-    (24303 / 125000 : ℝ) ≤ Real.log bankArg ∧ Real.log bankArg ≤ (1944241 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((85844483685441 / 885844483685441 : ℝ) : ℝ)| < 1) 8
++    (194424033167 / 1000000000000 : ℝ) ≤ Real.log bankArg ∧ Real.log bankArg ≤ (12151502073 / 62500000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((85844483685441 / 885844483685441 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (85844483685441 / 885844483685441 : ℝ)) / (1 - (85844483685441 / 885844483685441 : ℝ)) : ℝ) = bankArg := by
+     norm_num [bankArg]
+   rw [hratio] at h
+@@ -256,9 +256,9 @@
+ private def normalized_z : ℝ := (7523953 / 6250000 : ℝ)
+ 
+ private theorem log_normalized_z_bounds :
+-    (927551 / 5000000 : ℝ) ≤ Real.log normalized_z ∧ Real.log normalized_z ≤ (1855103 / 10000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((1273953 / 13773953 : ℝ) : ℝ)| < 1) 8
++    (185510200993 / 1000000000000 : ℝ) ≤ Real.log normalized_z ∧ Real.log normalized_z ≤ (92755100497 / 500000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((1273953 / 13773953 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (1273953 / 13773953 : ℝ)) / (1 - (1273953 / 13773953 : ℝ)) : ℝ) = normalized_z := by
+     norm_num [normalized_z]
+   rw [hratio] at h
+@@ -267,7 +267,7 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ theorem log_z_bounds :
+-    (-12935393 / 5000000 : ℝ) ≤ Real.log z ∧ Real.log z ≤ (-25870781 / 10000000 : ℝ) := by
++    (-2587078521247 / 1000000000000 : ℝ) ≤ Real.log z ∧ Real.log z ≤ (-1293539260621 / 500000000000 : ℝ) := by
+   have hu := log_normalized_z_bounds
+   have htwo := log_two_bounds
+   have heq : z = normalized_z / (2 : ℝ) ^ 4 := by norm_num [z, normalized_z]
+@@ -277,9 +277,9 @@
+   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
+ 
+ private theorem log_queryArg1_bounds :
+-    (362717 / 5000000 : ℝ) ≤ Real.log queryArg1 ∧ Real.log queryArg1 ≤ (145087 / 2000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((7523953 / 207523953 : ℝ) : ℝ)| < 1) 8
++    (72543455363 / 1000000000000 : ℝ) ≤ Real.log queryArg1 ∧ Real.log queryArg1 ≤ (18135863841 / 250000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((7523953 / 207523953 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (7523953 / 207523953 : ℝ)) / (1 - (7523953 / 207523953 : ℝ)) : ℝ) = queryArg1 := by
+     norm_num [queryArg1]
+   rw [hratio] at h
+@@ -288,9 +288,9 @@
+   constructor <;> linarith [hh.1, hh.2]
+ 
+ private theorem log_queryArg2_bounds :
+-    (155589 / 2000000 : ℝ) ≤ Real.log queryArg2 ∧ Real.log queryArg2 ≤ (388973 / 5000000 : ℝ) := by
+-  have h := Real.sum_range_sub_log_div_le
+-    (by norm_num : |((809005168746209 / 20809005168746209 : ℝ) : ℝ)| < 1) 8
++    (77794505629 / 1000000000000 : ℝ) ≤ Real.log queryArg2 ∧ Real.log queryArg2 ≤ (7779450563 / 100000000000 : ℝ) := by
++  have h := Real.sum_range_sub_log_div_le
++    (by norm_num : |((809005168746209 / 20809005168746209 : ℝ) : ℝ)| < 1) 16
+   have hratio : ((1 + (809005168746209 / 20809005168746209 : ℝ)) / (1 - (809005168746209 / 20809005168746209 : ℝ)) : ℝ) = queryArg2 := by
+     norm_num [queryArg2]
+   rw [hratio] at h
+@@ -298,7 +298,7 @@
+   have hh := abs_le.mp h
+   constructor <;> linarith [hh.1, hh.2]
+ 
+-theorem Hpi_bounds : (407317 / 500000 : ℝ) ≤ Hpi ∧ Hpi ≤ (814637 / 1000000 : ℝ) := by
++theorem Hpi_bounds : (16292712759 / 20000000000 : ℝ) ≤ Hpi ∧ Hpi ≤ (20365890949 / 25000000000 : ℝ) := by
+   have h_pi0 := log_pi0_bounds
+   have h_pi1 := log_pi1_bounds
+   have h_pi2 := log_pi2_bounds
+@@ -313,7 +313,7 @@
+     norm_num [Hpi, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
+     linarith [h_pi0.1, h_pi0.2, h_pi1.1, h_pi1.2, h_pi2.1, h_pi2.2, h_two.1, h_two.2]
+ 
+-theorem Halpha_bounds : (127857 / 250000 : ℝ) ≤ Halpha ∧ Halpha ≤ (63929 / 125000 : ℝ) := by
++theorem Halpha_bounds : (51142981001 / 100000000000 : ℝ) ≤ Halpha ∧ Halpha ≤ (51142981003 / 100000000000 : ℝ) := by
+   have h_alpha0 := log_alpha0_bounds
+   have h_alpha1 := log_alpha1_bounds
+   have h_alpha2 := log_alpha2_bounds
+@@ -328,7 +328,7 @@
+     norm_num [Halpha, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
+     linarith [h_alpha0.1, h_alpha0.2, h_alpha1.1, h_alpha1.2, h_alpha2.1, h_alpha2.2, h_two.1, h_two.2]
+ 
+-theorem partitionEntropy_bounds : (205117 / 1000000 : ℝ) ≤ partitionEntropy ∧ partitionEntropy ≤ (641 / 3125 : ℝ) := by
++theorem partitionEntropy_bounds : (2563976743 / 12500000000 : ℝ) ≤ partitionEntropy ∧ partitionEntropy ≤ (4102362789 / 20000000000 : ℝ) := by
+   have h_three := log_three_bounds
+   have h_two := log_two_bounds
+   constructor
+@@ -341,7 +341,7 @@
+     norm_num [partitionEntropy, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
+     linarith [h_three.1, h_three.2, h_two.1, h_two.2]
+ 
+-theorem bankEntropy_bounds : (782163 / 1000000 : ℝ) ≤ bankEntropy ∧ bankEntropy ≤ (391083 / 500000 : ℝ) := by
++theorem bankEntropy_bounds : (39108201993 / 50000000000 : ℝ) ≤ bankEntropy ∧ bankEntropy ≤ (19554100997 / 25000000000 : ℝ) := by
+   have h_bankArg := log_bankArg_bounds
+   have h_y := log_y_bounds
+   have h_two := log_two_bounds
+@@ -355,7 +355,7 @@
+     norm_num [bankEntropy, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
+     linarith [h_bankArg.1, h_bankArg.2, h_y.1, h_y.2, h_two.1, h_two.2]
+ 
+-theorem queryEntropy_bounds : (35043 / 500000 : ℝ) ≤ queryEntropy ∧ queryEntropy ≤ (70089 / 1000000 : ℝ) := by
++theorem queryEntropy_bounds : (438046523 / 6250000000 : ℝ) ≤ queryEntropy ∧ queryEntropy ≤ (7008744369 / 100000000000 : ℝ) := by
+   have h_queryArg1 := log_queryArg1_bounds
+   have h_queryArg2 := log_queryArg2_bounds
+   have h_z := log_z_bounds
+@@ -507,7 +507,7 @@
+   · exact h5
+   · norm_num [certificateExponent]
+ 
+-theorem certificate_margin : targetExponent - certificateExponent = (1 / 100000 : ℝ) := by
++theorem certificate_margin : targetExponent - certificateExponent = (7 / 50000000 : ℝ) := by
+   norm_num [targetExponent, certificateExponent]
+ theorem certificate_lt_target : certificateExponent < targetExponent := by
+   norm_num [targetExponent, certificateExponent]
+--- a/Submission/ThreeSum/TernaryOversizeRates.lean
++++ b/Submission/ThreeSum/TernaryOversizeRates.lean
+@@ -150,7 +150,7 @@
+   · rfl
+   · field_simp [Hpi_pos.ne'] <;> ring
+ 
+-def softCertificate : ℝ := 1920291/1000000
++def softCertificate : ℝ := 192027957/100000000
+ def GoodBlock (K m : ℕ) : Prop := 0 < m ∧ bankCharge K m<softCertificate ∧
+   queryCharge K m<softCertificate ∧ endpointCharge K m<softCertificate ∧
+   histogramCharge K m<softCertificate ∧ incidenceCharge K m<softCertificate
+@@ -160,10 +160,10 @@
+   have hk : 0 < K := by omega
+   have hkR : (0 : ℝ) < K := by exact_mod_cast hk
+   have hkR' : (100000000 : ℝ) ≤ K := by exact_mod_cast hK
+-  have h8 : 8/(K : ℝ) < (1/1000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
+-  have h10 : 10/(K : ℝ) < (1/1000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
++  have h8 : 8/(K : ℝ) < (11/100000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
++  have h10 : 10/(K : ℝ) < (11/100000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
+   obtain ⟨hB,hQ,hA,hP,hI⟩ := ledger_individual_bounds
+-  have he : certificateExponent+(1/1000000 : ℝ)=softCertificate := by norm_num [certificateExponent,softCertificate]
++  have he : certificateExponent+(11/100000000 : ℝ)=softCertificate := by norm_num [certificateExponent,softCertificate]
+   have hb : 2*bankEntropy/Hpi+8/K<softCertificate := by linarith
+   have hq : 2-partitionEntropy/Hpi+2*queryEntropy/Hpi+10/K<softCertificate := by linarith
+   have ha : 2*Halpha/Hpi+8/K<softCertificate := by linarith
+@@ -177,7 +177,7 @@
+     (incidence_charge_tendsto hk).eventually (gt_mem_nhds hi)] with m hm hB hQ hA hP hI
+   exact ⟨hm,hB,hQ,hA,hP,hI⟩
+ 
+-theorem soft_certificate_margin : targetExponent-softCertificate=(9/1000000 : ℝ) := by
++theorem soft_certificate_margin : targetExponent-softCertificate=(3/100000000 : ℝ) := by
+   norm_num [targetExponent,softCertificate]
+ 
+ end ThreeSum.TernaryOversizeRates
+--- a/Submission/ThreeSum/TernaryOversizeOverhead.lean
++++ b/Submission/ThreeSum/TernaryOversizeOverhead.lean
+@@ -257,7 +257,7 @@
+     softCertificate+microAllowance K < targetExponent := by
+   have hk : (100000000 : ℝ) ≤ K := by exact_mod_cast hK
+   have hp : (0 : ℝ) < K := by linarith
+-  have hδ : microAllowance K < (1/1000000 : ℝ) := by
++  have hδ : microAllowance K < (1/100000000 : ℝ) := by
+     unfold microAllowance
+     apply (div_lt_iff₀ (by positivity)).mpr
+     nlinarith
+--- a/Submission/ThreeSum/TernaryCountFrontendBudget.lean
++++ b/Submission/ThreeSum/TernaryCountFrontendBudget.lean
+@@ -460,9 +460,9 @@
+   change _≤((A : ℝ)*D*(C : ℝ)^3)*R^(degree+4)*E
+   exact htotal.trans_eq (by rw [pow_add]; ring)
+ 
+-def frontendExponent : ℝ :=1920293/1000000
+-
+-theorem frontend_margin : targetExponent-frontendExponent=(7/1000000 : ℝ) := by
++def frontendExponent : ℝ :=96013979/50000000
++
++theorem frontend_margin : targetExponent-frontendExponent=(1/50000000 : ℝ) := by
+   norm_num [targetExponent,frontendExponent]
+ 
+ theorem principal_exponent_lt {K m : ℕ} (hK : 100000000≤K) (c d : ℕ)
+@@ -473,7 +473,7 @@
+     max_lt hgood.2.1 hgood.2.2.1
+   have hkr : (100000000 : ℝ)≤K := by exact_mod_cast hK
+   have hkp : (0 : ℝ)<K := by linarith
+-  have hmicro : microAllowance K<(1/1000000 : ℝ) := by
++  have hmicro : microAllowance K<(1/100000000 : ℝ) := by
+     unfold microAllowance
+     apply (div_lt_iff₀ (by positivity)).mpr
+     nlinarith
+--- a/Submission/ThreeSum/TernaryActualPrefixRuntime.lean
++++ b/Submission/ThreeSum/TernaryActualPrefixRuntime.lean
+@@ -334,7 +334,7 @@
+         (max_lt hgood.2.2.2.1 (max_lt hgood.2.2.2.2.1 hgood.2.2.2.2.2))))
+   have hkr : (100000000:ℝ)≤K:=by exact_mod_cast hK
+   have hkp : (0:ℝ)<K:=by linarith
+-  have hmicro : microAllowance K<(1/1000000:ℝ):=by
++  have hmicro : microAllowance K<(1/100000000:ℝ):=by
+     unfold microAllowance
+     apply (div_lt_iff₀ (by positivity)).mpr
+     nlinarith
+--- a/Submission/ThreeSum/TernaryActualRuntimeParameters.lean
++++ b/Submission/ThreeSum/TernaryActualRuntimeParameters.lean
+@@ -12,12 +12,12 @@
+ theorem runtime_margin {K m : ℕ} (hK : 100000000≤K) (c d : ℕ)
+     (hgood : GoodBlock K m)
+     (hover : overheadCharge (selectedMoment K) c d m<microAllowance K) :
+-    fullExponent K (selectedMoment K) c d m+microAllowance K+(1/1000000:ℝ)<
++    fullExponent K (selectedMoment K) c d m+microAllowance K+(1/100000000:ℝ)<
+       TernaryParameters.targetExponent:=by
+   have ht:=full_exponent_lt hK c d hgood hover
+   have hk : (100000000:ℝ)≤K:=by exact_mod_cast hK
+   have hp : (0:ℝ)<K:=by linarith
+-  have hμ : microAllowance K<(1/1000000:ℝ):=by
++  have hμ : microAllowance K<(1/100000000:ℝ):=by
+     unfold microAllowance
+     apply (div_lt_iff₀ (by positivity)).mpr
+     nlinarith
+@@ -33,7 +33,7 @@
+       carryExponent m (2^t) κ<microAllowance K ∧
+       (2*K).factorial*(2^t)^(2*K)<nativePrime K m ∧
+       2*(2^t)<nativePrime K m ∧
+-      fullExponent K (selectedMoment K) c d m+microAllowance K+(1/1000000:ℝ)<
++      fullExponent K (selectedMoment K) c d m+microAllowance K+(1/100000000:ℝ)<
+         TernaryParameters.targetExponent:=by
+   obtain ⟨t,m,ht,hN,hgood,hover,hcarry,hminor,hprime⟩:=
+     TernarySignedParameters.simultaneous_parameters hK hκ c d N
+--- a/Submission/ThreeSum/TernaryActualColoredRuntime.lean
++++ b/Submission/ThreeSum/TernaryActualColoredRuntime.lean
+@@ -17,7 +17,7 @@
+ set_option maxRecDepth 24000
+ attribute [local instance] Classical.propDecidable
+ 
+-def exponent : ℝ :=1920295/1000000
++def exponent : ℝ :=192027959/100000000
+ def J (m β κ n : ℕ) :=TernarySignedPadding.paddedLength β (n^κ) (radixLength m n)
+ 
+ /-- This function is independent of every source value, color, field
+@@ -416,7 +416,7 @@
+     TernaryCountFrontendBudget.frontendExponent+microAllowance K<exponent:=by
+   have hk : (100000000:ℝ)≤K:=by exact_mod_cast hK
+   have hp : (0:ℝ)<K:=by linarith
+-  have hμ : microAllowance K<(1/1000000:ℝ):=by
++  have hμ : microAllowance K<(1/100000000:ℝ):=by
+     unfold microAllowance
+     apply (div_lt_iff₀ (by positivity)).mpr
+     nlinarith
+--- a/Submission/ThreeSum/TernaryProfileRuntime.lean
++++ b/Submission/ThreeSum/TernaryProfileRuntime.lean
+@@ -63,7 +63,7 @@
+ 
+ theorem hybrid_time_target (P : Profile κ) :
+     ∀ᶠ n : ℕ in atTop,
+-      timeUpTo P.hybridTime n ((n:ℝ)^(κ:ℝ))≤(n:ℝ)^(19203/10000:ℝ) :=
++      timeUpTo P.hybridTime n ((n:ℝ)^(κ:ℝ))≤(n:ℝ)^(4800699/2500000:ℝ) :=
+   TernaryHybridCosts.timeUpTo_eventually P.fast_powerBound
+     (by norm_num [exponent]) (by norm_num [exponent]) κ P.cutoff
+ 
+--- a/Submission/ThreeSum/TernarySolverEndBridge.lean
++++ b/Submission/ThreeSum/TernarySolverEndBridge.lean
+@@ -11,8 +11,8 @@
+ set_option maxHeartbeats 1500000
+ set_option maxRecDepth 16000
+ 
+-def target : ℚ := 19203/10000
+-def targetExponent : ℝ := 19203/10000
++def target : ℚ := 4800699/2500000
++def targetExponent : ℝ := 4800699/2500000
+ 
+ theorem target_cast : (target:ℝ)=targetExponent := by norm_num [target,targetExponent]
+ 
+@@ -26,14 +26,14 @@
+     (hs : Solves s3Task P p T need) (hp : PolyNeed need)
+     (ht : ∀ᶠ n : ℕ in atTop,
+       timeUpTo T n ((n:ℝ)^(κ:ℝ))≤ (n:ℝ)^targetExponent) :
+-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (19203/10000:ℝ) 0 :=
++    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+   TernaryEndBridge.solvedAt_of_solves hs hp ht
+ 
+ theorem solvedAt_of_uniform {κ : ℕ} {P : Program} {p : ℕ}
+     {T : ℕ→ ℕ→ ℕ} {need : ℕ→ ℕ→ Need}
+     (hs : Solves s3Task P p T need) (hp : PolyNeed need)
+     (ht : ∀ᶠ n : ℕ in atTop, ∀ U : ℕ, U≤ n^κ→ (T n U:ℝ)≤ (n:ℝ)^targetExponent) :
+-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (19203/10000:ℝ) 0 :=
++    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+   solvedAt_of_solves hs hp (TernaryEndBridge.timeUpTo_eventually_of_uniform ht)
+ 
+ /-- The final publication theorem needs one real solver and resource/time
+@@ -42,8 +42,8 @@
+     (h : ∀ κ : ℕ, ∃ (P : Program) (p : ℕ) (T : ℕ→ ℕ→ ℕ) (need : ℕ→ ℕ→ Need),
+       Solves s3Task P p T need ∧ PolyNeed need ∧
+       ∀ᶠ n : ℕ in atTop, timeUpTo T n ((n:ℝ)^(κ:ℝ))≤ (n:ℝ)^targetExponent) :
+-    EndStatement.ThreeSum.SolvedInTime (19203/10000:Rat) := by
+-  apply TernaryEndBridge.endStatement_of_solvers (by norm_num : (0:ℚ)≤ 19203/10000)
++    EndStatement.ThreeSum.SolvedInTime (4800699/2500000:Rat) := by
++  apply TernaryEndBridge.endStatement_of_solvers (by norm_num : (0:ℚ)≤ 4800699/2500000)
+   simpa only [Rat.cast_div,Rat.cast_ofNat,targetExponent] using h
+ 
+ theorem powerBound_of_eventually {T : ℕ→ ℕ} {a : ℝ}
+@@ -85,7 +85,7 @@
+     {T : ℕ→ ℕ} {need : ℕ→ ℕ→ Need} {a : ℝ}
+     (hexec : FastExecution P p κ cutoff T need) (hp : PolyNeed need)
+     (ht : PowerBound T a) (ha : 0≤ a) (hmargin : a<targetExponent) :
+-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (19203/10000:ℝ) 0 :=
++    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+   solvedAt_of_solves (hybrid_solves hexec) (hybrid_polyNeed hp κ cutoff)
+     (hybrid_timeUpTo ht ha hmargin κ cutoff)
+ 
+@@ -94,7 +94,7 @@
+       ∃ (P : Program) (p cutoff : ℕ) (T : ℕ→ ℕ) (need : ℕ→ ℕ→ Need) (a : ℝ),
+         FastExecution P p κ cutoff T need ∧ PolyNeed need ∧
+         PowerBound T a ∧ 0≤ a ∧ a<targetExponent) :
+-    EndStatement.ThreeSum.SolvedInTime (19203/10000:Rat) := by
++    EndStatement.ThreeSum.SolvedInTime (4800699/2500000:Rat) := by
+   apply endStatement_of_solvers
+   intro κ
+   obtain ⟨P,p,cutoff,T,need,a,hexec,hp,ht,ha,hmargin⟩:= h κ
+--- a/Submission/ThreeSum/TernaryFinalSolver.lean
++++ b/Submission/ThreeSum/TernaryFinalSolver.lean
+@@ -11,9 +11,9 @@
+   TernarySolverEndBridge.hybrid_solves P.fastExecution
+ 
+ /-- The original deterministic word-RAM benchmark, for every fixed
+-polynomial magnitude exponent, at the exact rational exponent19203/10000. -/
+-theorem solvedInTime_19203_10000 :
+-    EndStatement.ThreeSum.SolvedInTime (19203/10000 : Rat) := by
++polynomial magnitude exponent, at the exact rational exponent 4800699/2500000. -/
++theorem solvedInTime_4800699_2500000 :
++    EndStatement.ThreeSum.SolvedInTime (4800699/2500000 : Rat) := by
+   apply TernarySolverEndBridge.endStatement_of_solvers
+   intro κ
+   let P:=profile κ
+--- a/Submission.lean
++++ b/Submission.lean
+@@ -3,5 +3,5 @@
+ 
+ /-- Complete deterministic 3SUM bound in the trusted benchmark model. -/
+ theorem Race.bound :
+-    EndStatement.ThreeSum.SolvedInTime ((19203 : Rat) / 10000) := by
+-  exact ThreeSum.solvedInTime_19203_10000
++    EndStatement.ThreeSum.SolvedInTime ((4800699 : Rat) / 2500000) := by
++  exact ThreeSum.solvedInTime_4800699_2500000

@@ -1,0 +1,185 @@
+name: Verify refined 3SUM bound
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Submission.lean'
+      - 'Submission/**'
+      - 'VerifierAudit.lean'
+      - 'lean-toolchain'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - 'scripts/**'
+      - 'refinement/*.py'
+      - 'refinement/*.json'
+      - '.github/workflows/verify.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 3sum-verification-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    # Public-repository Linux runners provide 4 vCPUs and 16 GB RAM.
+    # Pin the baseline's OS while ubuntu-latest migrates to Ubuntu 26.04.
+    # https://docs.github.com/en/actions/reference/runners/github-hosted-runners
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      ELAN_HOME: ${{ runner.temp }}/3sum-elan
+      MATHLIB_CACHE_DIR: ${{ runner.temp }}/3sum-mathlib-cache
+      LEAN_NUM_THREADS: '4'
+      PYTHONUNBUFFERED: '1'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the exact triggering revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Record source revision and runner resources
+        run: |
+          set -euo pipefail
+          mkdir -p verification/ci
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+
+          chains = json.loads(Path('scripts/source-chains.json').read_text())
+          modules = [module for chain in chains for module in chain]
+          if len(modules) != 1198 or len(set(modules)) != 1198:
+              raise SystemExit('Expected the frozen 1198-module source plan.')
+          record = {
+              'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'workflow_sha': os.environ['GITHUB_SHA'],
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'image_os': os.environ.get('ImageOS'),
+              'image_version': os.environ.get('ImageVersion'),
+              'cpu_count': os.cpu_count(),
+              'memory_info': Path('/proc/meminfo').read_text(),
+              'lean_toolchain': Path('lean-toolchain').read_text().strip(),
+              'planned_module_count': len(modules),
+              'project_compilation_cache': 'No project compilation cache is restored.',
+              'scope': 'Source build and full-source axiom audit; no Comparator, Nanoda, or leaderboard acceptance.',
+          }
+          Path('verification/ci/run.json').write_text(json.dumps(record, indent=2) + '\n')
+          PY
+          df -h . > verification/ci/disk-before.txt
+
+      - name: Check the exact rational certificate independently
+        id: certificate
+        run: |
+          set -euo pipefail
+          python3 refinement/verify_certificate.py \
+            --certificate refinement/rational_certificate_refined.json \
+            --parameters Submission/ThreeSum/TernaryParameters.lean \
+            --runtime-root . \
+            | tee verification/ci/rational-certificate-check.json
+
+      - name: Reclaim unused tool storage on the disposable runner
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h . > verification/ci/disk-after-cleanup.txt
+
+      - name: Install the pinned Lean toolchain
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          elan_archive="$RUNNER_TEMP/3sum-elan-v4.2.4.tar.gz"
+          elan_unpack="$RUNNER_TEMP/3sum-elan-installer"
+          mkdir -p "$elan_unpack"
+          curl --fail --silent --show-error --location --retry 3 \
+            'https://github.com/leanprover/elan/releases/download/v4.2.4/elan-x86_64-unknown-linux-gnu.tar.gz' \
+            --output "$elan_archive"
+          printf '%s  %s\n' \
+            '42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63' \
+            "$elan_archive" | sha256sum --check - | tee verification/ci/elan-archive-check.log
+          tar -xzf "$elan_archive" -C "$elan_unpack"
+          "$elan_unpack/elan-init" -y --no-modify-path --default-toolchain none \
+            2>&1 | tee verification/ci/elan-install.log
+          printf '%s\n' "$ELAN_HOME/bin" >> "$GITHUB_PATH"
+          IFS= read -r pinned_toolchain < lean-toolchain
+          test "$pinned_toolchain" = 'leanprover/lean4:v4.33.1'
+          "$ELAN_HOME/bin/elan" toolchain install "$pinned_toolchain" \
+            2>&1 | tee verification/ci/toolchain-install.log
+          "$ELAN_HOME/bin/lean" --version | tee verification/ci/toolchain-version.txt
+
+      - name: Fetch dependencies and their pinned Mathlib cache
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' 2>&1 | tee verification/ci/mathlib-cache.log
+          from pathlib import Path
+          import subprocess
+          roots = Path('scripts/mathlib-cache-roots.txt').read_text().split()
+          subprocess.run(['lake', 'exe', 'cache', 'get', *roots], check=True)
+          PY
+
+      - name: Build every one of the 1198 submitted modules
+        id: build
+        timeout-minutes: 90
+        run: |
+          set -euo pipefail
+          python3 refinement/build_parallel.py --aggregate --threads 4 \
+            2>&1 | tee verification/ci/build-driver.log
+
+      - name: Audit every submitted declaration and its transitive axioms
+        id: audit
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          python3 scripts/audit_axioms.py 2>&1 | tee verification/ci/axiom-driver.log
+
+      - name: Record actual check outcomes
+        if: always()
+        env:
+          CERTIFICATE_OUTCOME: ${{ steps.certificate.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          set -euo pipefail
+          mkdir -p verification/ci
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          outcomes = {
+              'rational_certificate': os.environ['CERTIFICATE_OUTCOME'],
+              'complete_source_build': os.environ['BUILD_OUTCOME'],
+              'full_source_axiom_audit': os.environ['AUDIT_OUTCOME'],
+          }
+          Path('verification/ci/outcomes.json').write_text(json.dumps(outcomes, indent=2) + '\n')
+          lines = ['## Refined 3SUM verification', '', '| Check | Outcome |', '| --- | --- |']
+          lines.extend(f'| {name} | {outcome} |' for name, outcome in outcomes.items())
+          lines.extend([
+              '',
+              'Available receipts and logs are retained in the artifact; a skipped check has no receipt.',
+              'This workflow does not run Comparator or Nanoda and does not confer leaderboard acceptance.',
+          ])
+          with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a') as summary:
+              summary.write('\n'.join(lines) + '\n')
+          PY
+
+      - name: Upload verification receipts and logs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: 3sum-verification-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            verification/ci/
+            verification/builds/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 6

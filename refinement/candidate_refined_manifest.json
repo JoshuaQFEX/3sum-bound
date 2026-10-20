@@ -1,0 +1,60 @@
+{
+  "baseline": "4a4a98e6eca4fc16817f0d2074026fdaece52efd",
+  "files": [
+    {
+      "path": "Submission/ThreeSum/TernaryParameters.lean",
+      "baseline_sha256": "eabc262e00a8d6bc52d498125f746d4bab48721be2c304fbdf4908eb47ce02da",
+      "candidate_sha256": "d3e47b71876758b51d9527c482203034fb558c4877c0f66bff9d7aea2726ac3f"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryOversizeRates.lean",
+      "baseline_sha256": "6ae0357e71670b8062d4b259463b181eddc894ea4933d0bb0cbb71704c65f064",
+      "candidate_sha256": "01b3902c7ff784206f94882ded7f2d6d2582ac9350309c2a36cab2d1ffb18cd9"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryOversizeOverhead.lean",
+      "baseline_sha256": "b825c4e505430446bc592891e91d1d3e061e51894eec436e9a9ab5c7e58a4e24",
+      "candidate_sha256": "f8952a14c77f072efa72e7801a237d37fbd3202469e99bbd8f4e6e93e062ce52"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryCountFrontendBudget.lean",
+      "baseline_sha256": "f290fe5a4b08058aec3410a64ba4e45b230cc31fa8c615396a124258f7b75b04",
+      "candidate_sha256": "148384d59ee77fe705fed976013220c630e60dc665b4acbe14257b273edc0564"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryActualPrefixRuntime.lean",
+      "baseline_sha256": "35dca58d4806aadff80855509f5a251e4315ec6f2678bcbcde6536208a6909c4",
+      "candidate_sha256": "dd9bf3f3982f25f9d060a34336113fe6a0d89c4b6c63fe2c1cffda734a311ee7"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryActualRuntimeParameters.lean",
+      "baseline_sha256": "b842c461eb92b244d5ea9f5691850ceac84aba95dca67e5c9b2f68d48d7cf36e",
+      "candidate_sha256": "eb151d114413004229bbf5ed18f787b594b6371b6d8b05e9091fd336241d4019"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryActualColoredRuntime.lean",
+      "baseline_sha256": "ba1a8cbcf0dbe6787b8aadca96d77804094a161f5438f61cdbb3402211613c80",
+      "candidate_sha256": "4a5df308b49b58dff62cf8e58bf5529c2f887f48364473ae18d0c115f6a1e807"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryProfileRuntime.lean",
+      "baseline_sha256": "74e8b91083cd047e0582cf78bb0d4d23af3cbb203221624238dbb77fe743e898",
+      "candidate_sha256": "1a00379c37f696506fccdce91b19e9a48a97fb321dd00f41dff44fca7bdab5e2"
+    },
+    {
+      "path": "Submission/ThreeSum/TernarySolverEndBridge.lean",
+      "baseline_sha256": "2fac1e6a9d8bc4408663366ec46601e5bd8dab0f02dfca5d9a323257788d380b",
+      "candidate_sha256": "a910fe2368ee10efbaac23eaae28b18edb8f50cf2b3c6b04fcfbe71ef0d7c0d5"
+    },
+    {
+      "path": "Submission/ThreeSum/TernaryFinalSolver.lean",
+      "baseline_sha256": "7d7c0b1db177ac14f0359bd0baddf39c561b98ba00b79bf1006d65192629a5ed",
+      "candidate_sha256": "341d0b03888d762fb5e8c047b127d1927732aad6b75a067c1dfb2a3a97e51e73"
+    },
+    {
+      "path": "Submission.lean",
+      "baseline_sha256": "2f12cfc5d3e6f24beb7d08cc7309fc515f75066b18324696d87dd2262b3b16e0",
+      "candidate_sha256": "002efbe8bbfe39cce98e33b3f922a841e2fc1326f12b9c7b9ca67aef8897120a"
+    }
+  ]
+}

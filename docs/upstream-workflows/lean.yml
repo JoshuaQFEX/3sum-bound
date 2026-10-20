@@ -1,0 +1,41 @@
+name: Lean
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    env:
+      LEAN_NUM_THREADS: 4
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: lake exe cache get
+      - name: Build Submission
+        run: lake build Submission
+      - name: Check target and permitted axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean VerifierAudit.lean | tee /tmp/axioms.txt
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          text = Path('/tmp/axioms.txt').read_text()
+          match = re.search(r"'Race\.bound' depends on axioms: \[([^\]]*)\]", text)
+          assert match, 'Missing target axiom report'
+          assert {x.strip() for x in match[1].split(',')} == {'propext', 'Classical.choice', 'Quot.sound'}
+          assert 'sorryAx' not in text
+          PY
